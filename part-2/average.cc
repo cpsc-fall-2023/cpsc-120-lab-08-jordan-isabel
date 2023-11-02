@@ -14,10 +14,13 @@ int main(int argc, char* argv[]) {
     return 1;
   }
   double sum{0.0};
-  for (int i = 1; i < arguments.size(); ++i) {
-    sum += std::stod(arguments.at(i));
+  for (std::string& argument : arguments) {
+    if (argument == arguments[0]) {
+      continue;
+    }
+    sum += std::stod(argument);
   }
-  double average = sum / (arguments.size() - 1);
+  double average = sum / static_cast<double>((arguments.size() - 1));
   std::cout << "average = " << average << "\n";
   return 0;
 }
